@@ -36,3 +36,14 @@ POST /tasks
   "description": "Practice project",
   "priority": "HIGH"
 }
+
+## 📸 Sample Response
+
+```json
+{
+  "id": 1,
+  "title": "Learn Spring",
+  "description": "Practice project",
+  "priority": "HIGH",
+  "completed": false
+}
