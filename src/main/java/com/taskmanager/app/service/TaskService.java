@@ -34,4 +34,9 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
+    public void deleteTask(Long id){
+        Task task=taskRepository.findById(id).orElseThrow(() -> new RuntimeException(("Task  not found")));
+        taskRepository.delete(task);
+    }
+
 }
