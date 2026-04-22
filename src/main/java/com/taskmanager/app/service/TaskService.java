@@ -19,9 +19,9 @@ public class TaskService {
     public Task createTask (TaskRequest request){
 
         //Validation
-        if(request.getTitle() ==null || request.getTitle().isEmpty()){
-            throw new RuntimeException("Title is required");
-        }
+//        if(request.getTitle() ==null || request.getTitle().isEmpty()){
+//            throw new RuntimeException("Title is required");
+//        }(Remove this manual validation)
 
         //default value
         Task task=new Task();

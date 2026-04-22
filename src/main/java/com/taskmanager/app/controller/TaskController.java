@@ -6,6 +6,7 @@ import com.taskmanager.app.model.Task;
 import com.taskmanager.app.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class TaskController {
     private TaskService taskService;
 
     @PostMapping
-    public Task createTask(@RequestBody TaskRequest request){
+    public Task createTask(@Valid @RequestBody TaskRequest request){
         return taskService.createTask(request);
     }
     @GetMapping
