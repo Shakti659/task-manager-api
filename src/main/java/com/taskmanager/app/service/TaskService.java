@@ -1,6 +1,7 @@
 package com.taskmanager.app.service;
 
 
+import com.taskmanager.app.dto.TaskRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.taskmanager.app.model.Task;
@@ -15,14 +16,18 @@ public class TaskService {
     private TaskRepository taskRepository;
 
 
-    public Task createTask (Task task){
+    public Task createTask (TaskRequest request){
 
         //Validation
-        if(task.getTitle() ==null || task.getTitle().isEmpty()){
+        if(request.getTitle() ==null || request.getTitle().isEmpty()){
             throw new RuntimeException("Title is required");
         }
 
         //default value
+        Task task=new Task();
+        task.setTitle(request.getTitle());
+        task.setDescription(request.getDescription());
+        task.setPriority(request.getPriority());
         task.setCompleted(false);
 
         //save to DB

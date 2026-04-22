@@ -1,6 +1,7 @@
 package com.taskmanager.app.controller;
 
 
+import com.taskmanager.app.dto.TaskRequest;
 import com.taskmanager.app.model.Task;
 import com.taskmanager.app.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class TaskController {
     private TaskService taskService;
 
     @PostMapping
-    public Task createTask(@RequestBody Task task){
-        return taskService.createTask(task);
+    public Task createTask(@RequestBody TaskRequest request){
+        return taskService.createTask(request);
     }
     @GetMapping
     public List<Task> getAllTasks() {
