@@ -37,7 +37,15 @@ POST /tasks
   "priority": "HIGH"
 }
 
-## 📸 Sample Response
+### ❌ Validation Error Example
+
+If the title is empty, the API returns:
+```json
+{
+  "message": "Title is required"
+}
+
+### 📦 Sample Response
 
 ```json
 {
