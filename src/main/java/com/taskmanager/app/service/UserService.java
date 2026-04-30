@@ -1,6 +1,8 @@
 package com.taskmanager.app.service;
 
 
+import com.taskmanager.app.Security.JwtUtil;
+import com.taskmanager.app.dto.AuthResponse;
 import com.taskmanager.app.dto.LoginRequest;
 import com.taskmanager.app.dto.UserRequest;
 import com.taskmanager.app.dto.UserResponse;
@@ -20,6 +22,9 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
 
 
     public User register(UserRequest request){
@@ -36,7 +41,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public UserResponse login(LoginRequest request){
+    public AuthResponse login(LoginRequest request){
 
         //check user exists
 
@@ -46,11 +51,20 @@ public class UserService {
         if(!passwordEncoder.matches(request.getPassword(),user.getPassword())){
             throw new RuntimeException("Invalid password");
         }
+        //Generate JWT token
+        String token=jwtUtil.generateToken(user.getUsername());
+
+        //return token
+        AuthResponse res=new AuthResponse();
+        res.setToken(token);
+        return res;
 
         //retun safe response
-        UserResponse res=new UserResponse();
-        res.setId(user.getId());
-        res.setUsername(user.getUsername());
-        return res;
+//        UserResponse res=new UserResponse();
+//        res.setId(user.getId());
+//        res.setUsername(user.getUsername());
+
     }
+
+
 }

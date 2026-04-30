@@ -1,9 +1,7 @@
 package com.taskmanager.app.controller;
 
 
-import com.taskmanager.app.dto.LoginRequest;
-import com.taskmanager.app.dto.UserRequest;
-import com.taskmanager.app.dto.UserResponse;
+import com.taskmanager.app.dto.*;
 import com.taskmanager.app.model.User;
 import com.taskmanager.app.service.UserService;
 import jakarta.validation.Valid;
@@ -29,7 +27,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public UserResponse login(@Valid @RequestBody LoginRequest request){
+    public AuthResponse login(@RequestBody LoginRequest request){
         return userService.login(request);
     }
-}
+    }
+
+
